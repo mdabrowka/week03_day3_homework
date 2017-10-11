@@ -28,4 +28,14 @@ attr_reader :id, :name
       @id = saved_artist[0]['id'].to_i
   end
 
+    def self.all()
+      sql = "SELECT * FROM artists"
+      values = []
+      artists = SqlRunner.run(sql, values)
+      artists_as_objects = artists.map{|artist| Artist.new(artist)}
+      return artists_as_objects
+    end
+
+  
+
 end
