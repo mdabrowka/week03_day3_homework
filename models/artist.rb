@@ -4,7 +4,8 @@ require_relative('album.rb')
 
 
 class Artist
-attr_reader :id, :name
+  attr_accessor :name
+  attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -38,12 +39,24 @@ attr_reader :id, :name
 
 
     def find_albums()
-    sql = "SELECT * FROM albums WHERE artist_id = $1"
-    values = [@id]
-    results = SqlRunner.run(sql, values)
-    found_albums = results.map{|album| Album.new(album)}
-    return found_albums
-  end
+      sql = "SELECT * FROM albums WHERE artist_id = $1"
+      values = [@id]
+      results = SqlRunner.run(sql, values)
+      found_albums = results.map{|album| Album.new(album)}
+      return found_albums
+    end
 
+    def update()
+      sql = "UPDATE artists
+           SET (
+           name
+           ) =
+           (
+            $1
+           ) WHERE id = $2
+           "
+           values = [@name, @id]
+           SqlRunner.run(sql, values)
+    end
 
 end
