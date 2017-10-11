@@ -9,6 +9,9 @@ Artist.delete_all
 artist_1 = Artist.new({'name' => 'Stolen Babies'})
 artist_1.save()
 
+artist_2 = Artist.new({'name' => 'Fat Joe'})
+artist_2.save()
+
 
 album_1 = Album.new({'title' => 'There will be squabbles ahead',
   'genre' => 'alternative',

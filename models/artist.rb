@@ -71,4 +71,18 @@ class Artist
       SqlRunner.run(sql, values)
     end
 
+    def Artist.find(id)
+     db = PG.connect({dbname: 'music_collection',
+       host: 'localhost'})
+    sql = "SELECT * FROM artists WHERE id = $1"
+    values = [id]
+    db.prepare("find", sql)
+    results_array = db.exec_prepared("find", values)
+    artist_hash = results_array[0]
+    artist = Artist.new(artist_hash)
+    return artist
+    db.close()
+  end
+
+
 end

@@ -77,4 +77,18 @@ class Album
     SqlRunner.run(sql, values)
   end
 
+
+  def Album.find(id)
+   db = PG.connect({dbname: 'music_collection',
+     host: 'localhost'})
+  sql = "SELECT * FROM albums WHERE id = $1"
+  values = [id]
+  db.prepare("find", sql)
+  results_array = db.exec_prepared("find", values)
+  album_hash = results_array[0]
+  album = Album.new(album_hash)
+  return album
+  db.close()
+  end
+
 end
