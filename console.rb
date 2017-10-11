@@ -12,7 +12,15 @@ album_1 = Album.new({'title' => 'There will be squabbles ahead',
   'artist_id' => artist_1.id()})
 album_1.save()
 
+album_2 = Album.new({'title' => 'Naught',
+  'genre' => 'alternative',
+  'artist_id' => artist_1.id()})
+album_2.save()
 
+album_3 = Album.new({'title' => '4 Song Demo',
+  'genre' => 'alternative',
+  'artist_id' => artist_1.id()})
+album_3.save()
 
 binding.pry
 nil
