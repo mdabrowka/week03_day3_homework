@@ -8,6 +8,7 @@ artist_1.save()
 
 
 album_1 = Album.new({'title' => 'There will be squabbles ahead',
+  'genre' => 'alternative',
   'artist_id' => artist_1.id()})
 album_1.save()
 
